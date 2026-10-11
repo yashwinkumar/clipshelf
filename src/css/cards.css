@@ -1,0 +1,143 @@
+/* Horizontal strip of clipboard cards and their states. */
+.strip {
+  position: relative;
+  height: calc(100% - var(--toolbar-height));
+}
+
+.cards {
+  height: 100%;
+  margin: 0;
+  padding: 6px 16px 0 var(--strip-inset);
+  list-style: none;
+  display: flex;
+  gap: var(--card-gap);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+}
+
+.empty {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  color: var(--text-faint);
+  font-size: 16px;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.card {
+  position: relative;
+  flex: 0 0 var(--card-width);
+  height: var(--card-height);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--card-radius);
+  background: var(--card-bg);
+  border: 1px solid var(--card-edge);
+  cursor: default;
+  outline: none;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+.card:hover { border-color: var(--card-edge-hover); }
+.card[aria-selected="true"],
+.card:focus-visible {
+  box-shadow: 0 0 0 3px var(--accent);
+  border-color: transparent;
+}
+
+.card-header {
+  position: relative;
+  flex: none;
+  height: var(--header-height);
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 64px;               /* room for the source icon */
+}
+.card-title { font-size: 13px; font-weight: 700; line-height: 16px; }
+.card-time { font-size: 11px; line-height: 14px; opacity: 0.8; white-space: nowrap; }
+
+.card-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 52px;
+  height: var(--header-height);
+  display: grid;
+  place-items: center;
+  background: #e2ebdb;
+  border-bottom-left-radius: 14px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #263e32;
+  overflow: hidden;
+}
+.card-icon img { width: 34px; height: 34px; display: block; }
+
+.card-body {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  padding: 12px 12px 0;
+  overflow: hidden;
+}
+.card-text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 17px;
+  color: var(--text);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  user-select: none;
+}
+/* Preview fade: the last lines dissolve into the card background. */
+.card-body::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 44px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(48, 75, 61, 0), var(--card-bg) 85%);
+}
+
+.card-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-dim);
+  pointer-events: none;
+}
+
+.card-copy {
+  position: absolute;
+  right: 8px;
+  bottom: 6px;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+.card:hover .card-copy,
+.card:focus-within .card-copy,
+.card[aria-selected="true"] .card-copy { opacity: 1; }
+.card-copy:hover { background: rgba(255, 255, 255, 0.2); }
+.card-copy svg { width: 13px; height: 13px; }
+.card-copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }

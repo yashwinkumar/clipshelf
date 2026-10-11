@@ -1,0 +1,23 @@
+[package]
+name = "clipshelf"
+version = "0.1.0"
+description = "A local text clipboard history app for macOS"
+license = "MIT"
+repository = "https://github.com/yashwinkumar/clipshelf"
+edition = "2021"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon", "macos-private-api"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+objc2 = "0.6"
+objc2-app-kit = { version = "0.3", features = ["NSPasteboard", "NSWorkspace", "NSRunningApplication", "NSScreen", "NSEvent", "NSImage", "NSBitmapImageRep"] }
+objc2-foundation = "0.3"
+base64 = "0.22"
+rusqlite = { version = "0.32", features = ["bundled"] }
+
+tauri-plugin-global-shortcut = "2"
+tauri-plugin-single-instance = "2"

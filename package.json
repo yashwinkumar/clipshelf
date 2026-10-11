@@ -1,0 +1,21 @@
+{
+  "name": "clipshelf",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Clipshelf: a clipboard history app for macOS built with Tauri and Rust.",
+  "scripts": {
+    "tauri": "tauri",
+    "dev": "tauri dev",
+    "test": "cargo test --manifest-path src-tauri/Cargo.toml",
+    "bundle:debug": "tauri build --debug --bundles app --config src-tauri/bundle.config.json",
+    "bundle": "tauri build --bundles app --config src-tauri/bundle.config.json"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yashwinkumar/clipshelf.git"
+  }
+}

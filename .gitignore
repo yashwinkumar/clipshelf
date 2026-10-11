@@ -1,0 +1,24 @@
+# dependencies and build output
+node_modules/
+src-tauri/target/
+src-tauri/gen/
+# local data: never commit clipboard content or databases
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+*.log
+.env
+.DS_Store
+# local recordings and captures
+*.mov
+*.mp4
+screenshots/
+
+# local credentials and database sidecars
+.env.*
+*.pem
+*.key
+*.sqlite3-*
+*.sqlite-*
+*.db-*

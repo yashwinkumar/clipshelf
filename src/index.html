@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clipshelf</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/panel.css">
+  <link rel="stylesheet" href="css/cards.css">
+</head>
+<body>
+  <main class="panel" id="panel">
+    <header class="toolbar">
+      <div class="brand" aria-hidden="true"><span class="brand-mark"></span></div>
+
+      <form class="search" role="search" id="search-form">
+        <label class="visually-hidden" for="search">Search clipboard history</label>
+        <svg class="icon" viewBox="0 0 16 16" aria-hidden="true">
+          <circle cx="7" cy="7" r="4.8" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M10.6 10.6 14 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <input id="search" type="search" placeholder="Search" autocomplete="off" spellcheck="false">
+        <button type="button" class="icon-button" id="clear-search" aria-label="Clear search" hidden>
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <circle cx="8" cy="8" r="7" fill="currentColor"/>
+            <path d="M5.5 5.5 10.5 10.5M10.5 5.5 5.5 10.5" stroke="var(--field-bg)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </form>
+
+      <button type="button" class="icon-button clear-history" id="clear-history" aria-label="Clear all history" title="Clear all history">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 4h10M6 4V2h4v2M4 4l1 10h6l1-10M7 6v5M9 6v5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button type="button" class="icon-button pause" id="pause" aria-label="Pause capture" aria-pressed="false" title="Pause capture">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <button type="button" class="icon-button hide" id="hide" aria-label="Hide panel">
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M4 4 12 12M12 4 4 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </header>
+
+    <section class="strip" aria-label="Clipboard history">
+      <ul id="cards" class="cards" role="listbox" aria-label="Clipboard items"></ul>
+      <p id="empty" class="empty" hidden></p>
+    </section>
+
+    <dialog id="clear-dialog" aria-labelledby="clear-title" aria-describedby="clear-description">
+      <h2 id="clear-title">Clear all history?</h2>
+      <p id="clear-description">This deletes every saved clipboard item, including items outside this search. You cannot undo it. Your current clipboard stays unchanged.</p>
+      <p id="clear-error" role="alert" hidden></p>
+      <div class="dialog-actions">
+        <button type="button" id="cancel-clear" autofocus>Cancel</button>
+        <button type="button" id="confirm-clear">Clear all history</button>
+      </div>
+    </dialog>
+    <p id="toast" class="toast" role="status" aria-live="polite" hidden></p>
+  </main>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
